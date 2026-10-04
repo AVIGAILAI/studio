@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta property="og:title" content="הסטודיו שלך בקלוד קוד">
+<meta property="og:description" content="מדריך חינם: הסקילים, הקישורים והמשפטים ליצירת קרוסלות מונפשות">
+<title>הסטודיו שלך בקלוד קוד</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: one narrow phone-first column, numbered steps (a real sequence), copyable prompt cards. Single dark brand look. */
+:root{
+  --bg:#0b0a08; --surface:#16140f; --surface2:#1e1a12; --line:rgba(201,168,76,.42);
+  --fg:#f5f2e8; --soft:#d9d4c6; --muted:#a39d8d; --gold:#c9a84c; --gold2:#f2d27a; --red:#c0392b; --ink:#0b0a08;
+  --display:"Rubik","Segoe UI",Arial,sans-serif; --body:"Rubik","Segoe UI",Arial,sans-serif; --mono:ui-monospace,Consolas,monospace;
+  color-scheme:dark;
+}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;margin:0;
+  padding-inline:18px;padding-block:28px 56px;direction:rtl;text-align:right}
+.wrap{max-width:640px;margin-inline:auto;display:flex;flex-direction:column;gap:30px}
+a{color:var(--gold2)}
+.ltr{direction:ltr;unicode-bidi:isolate;white-space:nowrap}
+
+header{display:flex;flex-direction:column;gap:12px;padding-block:8px 4px;
+  background:radial-gradient(120% 90% at 100% 0%, rgba(201,168,76,.16), transparent 60%)}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.06em;color:var(--gold)}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(34px,9vw,52px);line-height:1.05;margin:0;text-wrap:balance}
+h1 em{font-style:normal;color:var(--gold)}
+.lead{color:var(--soft);margin:0;max-width:60ch}
+.handle{font-size:14px;color:var(--muted)}
+
+.step{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.num{width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--ink);font-weight:900;font-size:20px;display:grid;place-items:center}
+.step > div{min-width:0;display:flex;flex-direction:column;gap:12px}
+h2{font-family:var(--display);font-size:23px;font-weight:900;margin:6px 0 0;line-height:1.25;text-wrap:balance}
+p{margin:0}
+ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+li{position:relative;padding-right:24px;color:var(--soft)}
+li::before{content:"✓";position:absolute;right:0;color:var(--gold);font-weight:900}
+b.g,.g{color:var(--gold2)}
+
+.skills{display:flex;flex-direction:column;gap:10px}
+.skill{background:var(--surface);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.skill .top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.skill .name{font-family:var(--mono);font-weight:700;color:var(--gold2);font-size:16px;direction:ltr}
+.tag{font-size:12px;font-weight:700;padding:2px 10px;border-radius:99px;border:1px solid var(--gold);color:var(--gold)}
+.tag.opt{border-color:var(--muted);color:var(--muted)}
+.skill .what{color:var(--soft);font-size:15.5px}
+.skill .src{font-size:13.5px;color:var(--muted);overflow-wrap:anywhere}
+
+.prompt{border:1px solid var(--line);border-radius:16px;background:linear-gradient(135deg, rgba(201,168,76,.12), rgba(255,255,255,.02));
+  padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.prompt .lbl{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:.03em}
+.prompt .txt{color:var(--fg);font-size:16px;overflow-wrap:anywhere}
+.copy{align-self:flex-start;font-family:var(--body);font-weight:700;font-size:14px;background:var(--gold);color:var(--ink);border:0;border-radius:99px;padding:8px 18px;cursor:pointer}
+.copy:focus-visible{outline:3px solid var(--gold2);outline-offset:2px}
+.copy.done{background:var(--surface2);color:var(--gold2)}
+
+.dl{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:10px 16px;text-decoration:none;font-weight:700}
+
+.tips{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.tip{background:var(--surface);border-radius:14px;padding:14px 16px;color:var(--soft);font-size:15.5px}
+.tip strong{display:block;color:var(--gold2);font-size:16.5px;margin-bottom:2px}
+
+footer{border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:4px;color:var(--muted);font-size:14px}
+footer strong{color:var(--fg);font-size:16px}
+@media (prefers-reduced-motion:no-preference){ .copy{transition:background .2s} }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">מדריך חינם ✦ קלוד קוד</span>
+    <h1>הסטודיו שלך<br>בתוך <em>קלוד קוד</em></h1>
+    <p class="lead">כל מה שצריך לחבר כדי שקלוד יכתוב, יעצב וינפיש לך קרוסלות. עושים את זה פעם אחת, ומשם כל קרוסלה לוקחת דקות. בלי לכתוב שורת קוד אחת.</p>
+    <span class="handle ltr">@avigail_naamadd</span>
+  </header>
+
+  <section class="step">
+    <span class="num">1</span>
+    <div>
+      <h2>מתקינים את קלוד קוד</h2>
+      <ul>
+        <li>מורידים את אפליקציית Claude למחשב (Windows או Mac)</li>
+        <li>צריך מנוי בתשלום: Pro ומעלה</li>
+        <li>פותחים את הלשונית <b class="g">Code</b> ובוחרים תיקייה, למשל "התוכן שלי"</li>
+        <li>מדברים איתו בעברית רגילה, בדיוק כמו בצ'אט</li>
+      </ul>
+      <a class="dl" href="https://claude.ai/download" target="_blank" rel="noopener">⬇ להורדה: <span class="ltr">claude.ai/download</span></a>
+    </div>
+  </section>
+
+  <section class="step">
+    <span class="num">2</span>
+    <div>
+      <h2>מתקינים את הסקילים</h2>
+      <p class="lead">סקיל זה מתכון קבוע שקלוד יודע לבצע. אלה הסקילים שצריך:</p>
+      <div class="skills">
+        <div class="skill"><div class="top"><span class="name">skill-creator</span><span class="tag">חובה</span></div>
+          <span class="what">בונה לך סקילים חדשים, כולל סקיל של הקול שלך ושל המיתוג שלך</span>
+          <span class="src">Anthropic (רשמי) · <a class="ltr" href="https://github.com/anthropics/skills" target="_blank" rel="noopener">github.com/anthropics/skills</a></span></div>
+        <div class="skill"><div class="top"><span class="name">frontend-design</span><span class="tag">חובה</span></div>
+          <span class="what">מעצב שקפים מרשימים ומדויקים. העברית יוצאת מושלמת</span>
+          <span class="src">Anthropic (רשמי) · אותו מאגר</span></div>
+        <div class="skill"><div class="top"><span class="name">hyperframes</span><span class="tag">חובה</span></div>
+          <span class="what">אנימציה, ניצוצות ותנועה, והופך כל שקף לסרטון MP4</span>
+          <span class="src">HeyGen, קוד פתוח · <a class="ltr" href="https://github.com/heygen-com/hyperframes" target="_blank" rel="noopener">github.com/heygen-com/hyperframes</a></span></div>
+        <div class="skill"><div class="top"><span class="name">canvas-design</span><span class="tag opt">בונוס</span></div>
+          <span class="what">פוסטרים ותמונות סטטיות ל-PNG ול-PDF</span>
+          <span class="src">Anthropic (רשמי) · אותו מאגר</span></div>
+      </div>
+      <div class="prompt">
+        <span class="lbl">הדרך הכי קלה: מעתיקים ומדביקים בקלוד קוד</span>
+        <p class="txt" id="p1">תתקין לי את הסקילים skill-creator, frontend-design ו-canvas-design מהמאגר github.com/anthropics/skills, ואת hyperframes מהמאגר github.com/heygen-com/hyperframes. תסביר לי כל שלב בעברית פשוטה.</p>
+        <button class="copy" id="c1" data-for="p1" type="button">העתקה</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="step">
+    <span class="num">3</span>
+    <div>
+      <h2>בונים 2 סקילים אישיים</h2>
+      <p class="lead">זה החלק שהופך את התוכן ל<b class="g">שלך</b> ולא לעוד טקסט של רובוט.</p>
+      <div class="prompt">
+        <span class="lbl">סקיל הקול שלך</span>
+        <p class="txt" id="p2">תבנה לי סקיל בשם "הקול שלי". הנה 5 עד 10 פוסטים שכתבתי: [מדביקים כאן]. תלמד את המילים, האורך, הפנייה והאימוג'ים שלי, ותכתוב תמיד ככה.</p>
+        <button class="copy" id="c2" data-for="p2" type="button">העתקה</button>
+      </div>
+      <div class="prompt">
+        <span class="lbl">סקיל המיתוג שלך</span>
+        <p class="txt" id="p3">תבנה לי סקיל בשם "המיתוג שלי": הצבעים שלי הם [...], הפונט [...], גודל שקף 1080×1350, מונה שקפים בפינה, ושם המשתמש שלי בתחתית. מצורפים הלוגו והתמונה שלי.</p>
+        <button class="copy" id="c3" data-for="p3" type="button">העתקה</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="step">
+    <span class="num">4</span>
+    <div>
+      <h2>מחברים קונקטורים</h2>
+      <p class="lead">באפליקציה: <b class="g">הגדרות ← Connectors</b>. מחברים פעם אחת, ומשם קלוד משתמש בהם לבד.</p>
+      <ul>
+        <li><b>Google Drive</b>: התמונות, הלוגו והחומרים שלך <span class="tag">מומלץ</span></li>
+        <li><b>Canva</b>: אם יש לך שם תבניות שאת אוהבת <span class="tag opt">לא חובה</span></li>
+        <li><b>כלי תמונות ווידאו AI</b> (למשל Kolbo): תמונות בסגנון שלך, סרטונים וקול <span class="tag opt">לא חובה</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="step">
+    <span class="num">5</span>
+    <div>
+      <h2>המשפט שמפעיל הכל ⚡</h2>
+      <div class="prompt">
+        <span class="lbl">מעתיקים, משנים את הנושא, ושולחים</span>
+        <p class="txt" id="p4">תכין לי קרוסלה מונפשת של 10 שקפים על [הנושא שלי], בקול שלי ובמיתוג שלי. כל שקף כסרטון MP4 בגודל 1080×1350, עם כניסות מונפשות ופיצוצי ניצוצות. תראה לי תצוגה מקדימה לפני שאתה מרנדר.</p>
+        <button class="copy" id="c4" data-for="p4" type="button">העתקה</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="tips" aria-label="טיפים">
+    <div class="tip"><strong>רעיון אחד לשקף</strong>שקף עמוס = גוללים הלאה. משפט קצר, מילה אחת מודגשת.</div>
+    <div class="tip"><strong>קודם שקף אחד</strong>תבקשי לראות את השער לפני שמרנדרים את כל ה-10. חוסך זמן.</div>
+    <div class="tip"><strong>אהבת? תשמרי כתבנית</strong>"תשמור את העיצוב הזה כתבנית קבועה לקרוסלות הבאות".</div>
+    <div class="tip"><strong>מעלים כקרוסלה</strong>באינסטגרם בוחרים את כל הסרטונים לפי הסדר, והם מתנגנים בתוך הקרוסלה.</div>
+  </section>
+
+  <footer>
+    <strong>שמרי את הקישור 📌</strong>
+    <span>ושימי עוקב לעוד תוכן על AI פרקטי לעסקים · <span class="ltr">@avigail_naamadd</span></span>
+  </footer>
+</div>
+
+<script>
+document.querySelectorAll('.copy').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const el = document.getElementById(btn.dataset.for);
+    const done = () => { btn.textContent = 'הועתק ✓'; btn.classList.add('done'); setTimeout(() => { btn.textContent = 'העתקה'; btn.classList.remove('done'); }, 1800); };
+    const fallback = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'מסומן, אפשר להעתיק'; };
+    try { navigator.clipboard.writeText(el.textContent.trim()).then(done, fallback); } catch (e) { fallback(); }
+  });
+});
+</script>
+</body>
+</html>
